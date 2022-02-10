@@ -1,0 +1,511 @@
+@import url("https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400;700&display=swap");
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-family: "Miriam Libre", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+nav {
+  background-color: #f0f2f3;
+  border-bottom: 0.5px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  min-width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+  z-index: 1;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+canvas {
+  display: none;
+}
+
+input {
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  width: 100%;
+  height: 46px;
+  line-height: 20px;
+  outline: none;
+  padding: 10px;
+}
+
+input:disabled {
+  background-color: #cecece;
+  cursor: not-allowed;
+}
+
+input:checked {
+  background-color: #000000;
+}
+
+h2 {
+  font-size: 30px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+hr {
+  border: 0.5px solid #ffffff;
+}
+
+svg {
+  display: block;
+  margin: 0 auto;
+}
+
+.nav-btn {
+  background-color: transparent;
+  border-bottom: 2px solid transparent;
+  color: #9b9b9b;
+  font-size: 18px;
+  margin-right: 20px;
+  height: 100%;
+}
+
+.nav-btn.active {
+  border-bottom: 2px solid #000000;
+  color: #000000;
+}
+
+.container {
+  background-color: #b6b9b8;
+  display: grid;
+  grid-template-columns: 
+    minmax(260px, 1fr)
+    minmax(540px, 10fr)
+    minmax(260px, 1fr);
+  height: 100%;
+}
+
+.container__left,
+.container__right {
+  background-color: #f0f2f3;
+  padding: 60px 20px 80px 20px;
+}
+
+.container__middle {
+  align-self: center;
+  justify-self: center;
+}
+
+.container__right__checks {
+  padding: 20px;
+}
+
+.color-palette,
+.texture-palette,
+.icon-palette,
+.style-select {
+  min-width: 200px;
+  padding: 20px 0px;
+}
+
+.color-palette__buttons {
+  margin: 0 10px;
+}
+
+.color-palette button {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+}
+
+.color-palette__current {
+  border-radius: 6px;
+  width: 100%;
+  height: 30px;
+  margin-top: 15px;
+}
+
+.text-input {
+  padding: 20px 0px;
+}
+
+.style-select {
+  text-align: center;
+}
+
+.style-select__button {
+  background-color: #0000000e;
+  border-radius: 6px;
+  width: calc(50% - 20px);
+  height: 40px;
+  margin: 5px;
+}
+
+.style-select__button.active {
+  background-color: #02E2AC;
+}
+
+.action-btn {
+  background-color: #000000;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 20px;
+  width: 100%;
+  height: 46px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.action-btn:disabled {
+  background-color: #9b9b9b;
+  cursor: not-allowed;
+}
+
+.action-btn .loadingio-spinner-spinner {
+  position: absolute;
+  top: -76px;
+  left: 12px;
+  transform: scale(0.3);
+}
+
+.image-size {
+  background-color: #02E2AC;
+}
+
+.modal {
+  background-color: #00000057;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  overflow: scroll;
+  z-index: 2;
+}
+
+.form {
+  background-color: #f0f2f3;
+  border-radius: 6px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px;
+  position: relative;
+}
+
+.form__close-btn {
+  font-weight: bold;
+  font-size: 40px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.form__field {
+  margin-bottom: 20px;
+}
+
+.error-message,
+.success-message {
+  background-color: #f0f2f3;
+  border-radius: 6px;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.error {
+  color: rgb(199, 0, 0);
+}
+
+.success {
+  color: #02E2AC;
+}
+
+.form label {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.form input[type=submit] {
+  background-color: #000000;
+  color: #ffffff;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.label-checkmark {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.label-checkmark input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #ffffff;
+}
+
+.label-checkmark:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.label-checkmark input:checked ~ .checkmark {
+  background-color: #000000;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.label-checkmark input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.label-checkmark .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.display-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}
+
+.display-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.display-grid-5 {
+  display: grid;
+  grid-template-columns: repeat(5, 40px);
+  grid-gap: 5px;
+}
+
+.icon-svg {
+  width: 30px;
+  height: 30px;
+}
+
+.icon-svg svg {
+  cursor: pointer;
+}
+
+.nav-links {
+  align-self: center;
+  max-width: 500px;
+}
+
+.login-btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.login-btns div {
+  margin-right: 4px;
+}
+
+.login-btn {
+  background-color: #0000000e;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+  padding: 6px 8px;
+  text-align: left;
+  margin-left: 4px;
+}
+
+.login-btn img {
+  border-radius: 2px;
+  width: 26px;
+  height: 26px;
+  margin-right: 4px;
+}
+
+iframe {
+  display: none;
+}
+
+.wallet-btn {
+  background-color: #000000;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 6px 10px;
+  position: relative;
+}
+
+.wallet-btn button {
+  background-color: transparent;
+  width: 100%;
+  font-size: 16px;
+}
+
+.wallet-btn .wallet-btn__address {
+  color: #ffffff;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 26px 1fr 26px;
+  min-height: 24px;
+  line-height: 24px;
+}
+
+.wallet-btn svg {
+  height: 100%;
+}
+
+.wallet-btn img {
+  border-radius: 2px;
+  width: 26px;
+  height: 26px;
+}
+
+.save-btn-wrapper {
+  position: relative;
+}
+
+.tooltip {
+  background-color: #ffffff;
+  border-radius: 6px;
+  color: #000000;
+  font-size: 16px;
+  margin-top: 4px;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  padding: 10px;
+}
+
+@keyframes ldio {
+  0% { opacity: 1 }
+  100% { opacity: 0 }
+}
+.ldio div {
+  left: 94px;
+  top: 48px;
+  position: absolute;
+  animation: ldio linear 1s infinite;
+  background: #000000;
+  width: 12px;
+  height: 24px;
+  border-radius: 6px / 12px;
+  transform-origin: 6px 52px;
+}.ldio div:nth-child(1) {
+  transform: rotate(0deg);
+  animation-delay: -0.9166666666666666s;
+  background: #000000;
+}.ldio div:nth-child(2) {
+  transform: rotate(30deg);
+  animation-delay: -0.8333333333333334s;
+  background: #000000;
+}.ldio div:nth-child(3) {
+  transform: rotate(60deg);
+  animation-delay: -0.75s;
+  background: #000000;
+}.ldio div:nth-child(4) {
+  transform: rotate(90deg);
+  animation-delay: -0.6666666666666666s;
+  background: #000000;
+}.ldio div:nth-child(5) {
+  transform: rotate(120deg);
+  animation-delay: -0.5833333333333334s;
+  background: #000000;
+}.ldio div:nth-child(6) {
+  transform: rotate(150deg);
+  animation-delay: -0.5s;
+  background: #000000;
+}.ldio div:nth-child(7) {
+  transform: rotate(180deg);
+  animation-delay: -0.4166666666666667s;
+  background: #000000;
+}.ldio div:nth-child(8) {
+  transform: rotate(210deg);
+  animation-delay: -0.3333333333333333s;
+  background: #000000;
+}.ldio div:nth-child(9) {
+  transform: rotate(240deg);
+  animation-delay: -0.25s;
+  background: #000000;
+}.ldio div:nth-child(10) {
+  transform: rotate(270deg);
+  animation-delay: -0.16666666666666666s;
+  background: #000000;
+}.ldio div:nth-child(11) {
+  transform: rotate(300deg);
+  animation-delay: -0.08333333333333333s;
+  background: #000000;
+}.ldio div:nth-child(12) {
+  transform: rotate(330deg);
+  animation-delay: 0s;
+  background: #000000;
+}
+.loadingio-spinner-spinner {
+  width: 200px;
+  height: 200px;
+  display: block;
+  overflow: hidden;
+  background: transparent;
+  margin: 0 auto;
+}
+.ldio {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0;
+}
+.ldio div {
+  box-sizing: content-box;
+}
