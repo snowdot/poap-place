@@ -224,3 +224,16 @@ export const DEFAULT_VALUES = {
     filePath: "reshot-icon-astronaut-ZHUQ6FG2SL",
     badgeStyle: "fill"
 }
+
+export const LOGIN_OPTIONS = [
+    {
+        id: 0,
+        value: "ud",
+        label: "UD"
+    },
+    {
+        id: 1,
+        value: "mm",
+        label: "MM"
+    },
+];

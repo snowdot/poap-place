@@ -14,8 +14,21 @@ export const generate6DigitRandomNum = () => {
     return digits;
 }
 
+export const isAbortError = error => {
+    if (error && error.name === "AbortError") {
+        return true;
+    }
+    return false;
+}
+
 export const trimAddress = (address, chars = 4) => {
-    return `${address.slice(0, chars)}...${address.slice(-chars)}`;
+    const checkUD = address.split("").indexOf(".");
+
+    if(checkUD !== -1) {
+        return address;
+    } else {
+        return `${address.slice(0, chars)}...${address.slice(-chars)}`;
+    }
 }
 
 export const createTextures = () => {
