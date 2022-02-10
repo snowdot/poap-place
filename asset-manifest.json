@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/poap-place/static/css/main.7a49e96c.chunk.css",
-    "main.js": "/poap-place/static/js/main.490593a1.chunk.js",
-    "main.js.map": "/poap-place/static/js/main.490593a1.chunk.js.map",
+    "main.css": "/poap-place/static/css/main.504bd407.chunk.css",
+    "main.js": "/poap-place/static/js/main.fa331f38.chunk.js",
+    "main.js.map": "/poap-place/static/js/main.fa331f38.chunk.js.map",
     "runtime-main.js": "/poap-place/static/js/runtime-main.961c11c4.js",
     "runtime-main.js.map": "/poap-place/static/js/runtime-main.961c11c4.js.map",
     "static/js/2.ab82f599.chunk.js": "/poap-place/static/js/2.ab82f599.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.5b375834.chunk.js": "/poap-place/static/js/3.5b375834.chunk.js",
     "static/js/3.5b375834.chunk.js.map": "/poap-place/static/js/3.5b375834.chunk.js.map",
     "index.html": "/poap-place/index.html",
-    "static/css/main.7a49e96c.chunk.css.map": "/poap-place/static/css/main.7a49e96c.chunk.css.map",
+    "static/css/main.504bd407.chunk.css.map": "/poap-place/static/css/main.504bd407.chunk.css.map",
     "static/js/2.ab82f599.chunk.js.LICENSE.txt": "/poap-place/static/js/2.ab82f599.chunk.js.LICENSE.txt",
     "static/media/mm-logo.c315a555.png": "/poap-place/static/media/mm-logo.c315a555.png",
     "static/media/reshot-icon-astronaut-ZHUQ6FG2SL.7107b74a.svg": "/poap-place/static/media/reshot-icon-astronaut-ZHUQ6FG2SL.7107b74a.svg",
@@ -60,7 +60,7 @@
   "entrypoints": [
     "static/js/runtime-main.961c11c4.js",
     "static/js/2.ab82f599.chunk.js",
-    "static/css/main.7a49e96c.chunk.css",
-    "static/js/main.490593a1.chunk.js"
+    "static/css/main.504bd407.chunk.css",
+    "static/js/main.fa331f38.chunk.js"
   ]
 }
