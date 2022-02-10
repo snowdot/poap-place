@@ -3,7 +3,6 @@ import "./App.css";
 import axios from "axios";
 import Modal from "./components/Modal";
 import POAP from "./components/POAP";
-import { DEFAULT_VALUES } from "./helpers/constants";
 import ColorPalette from "./components/ColorPalette";
 import TexturePalette from "./components/TexturePalette";
 import TextInput from "./components/TextInput";
@@ -13,8 +12,21 @@ import CreateEventBtn from "./components/CreateEventBtn";
 import DownloadBtn from "./components/DownloadBtn";
 import SaveBtn from "./components/SaveBtn";
 import Loading from "./components/Loading";
+
+import { LOGIN_OPTIONS, DEFAULT_VALUES } from "./helpers/constants";
 import LoginBtn from "./components/LoginBtn";
+import { getDomainNFT } from "./api/index";
+import { isAbortError } from "./helpers/functions";
 import WalletBtn from "./components/WalletBtn";
+
+import UAuth from "@uauth/js";
+
+const uauth = new UAuth({
+    clientID: process.env.REACT_APP_UD_CLIENT_ID,
+    clientSecret: process.env.REACT_APP_UD_CLIENT_SECRET,
+    scope: process.env.REACT_APP_UD_SCOPE,
+    redirectUri: process.env.REACT_APP_UD_REDIRECT_URI,
+});
 
 function App() {
     const [data, setData] = useState(DEFAULT_VALUES.data);
@@ -28,8 +40,49 @@ function App() {
     const [imgSize, setImgSize] = useState(0);
     const [showModal, setShowModal] = useState(false);
     const [isTemplate, setIsTemplate] = useState(false);
+
     const [account, setAccount] = useState(null);
+    const [domain, setDomain] = useState(null);
+    const [domainImg, setDomainImg] = useState(null);
     const provider = window.ethereum;
+
+    // ~~~ Fetching NFT image for UD ~~~
+    useEffect(() => {
+        if(!account) return;
+        if(!domain) return;
+        const udCheck = domain.split("").indexOf(".") !== -1 
+            ? true
+            : false;
+        if(!udCheck) return;
+        setDomainImg(null);
+
+        const query = getDomainNFT(domain);
+        query
+            .then(res => {
+                setDomainImg(res);
+            })
+            .catch(err => {
+                if(isAbortError(err)) {
+                    console.log("The user aborted a request.");
+                } else {
+                    console.error(err.message);
+                }
+            });
+        return () => {
+            query.cancel();
+        }
+    }, [account, domain]);
+
+    // ~~~ Check for previous login with UD ~~~
+    useEffect(() => {
+        uauth
+            .user()
+            .then(res => {
+                setDomain(res.sub);
+                setAccount(res.wallet_address);
+        })
+        .catch(err => console.error(err.message));
+    }, []);
 
     // ~~~ Check for template ~~~
     useEffect(() => {
@@ -51,23 +104,42 @@ function App() {
             });
     }, [account]);
 
-    const handleLogin = async () => {
-        if (provider) {
-            try {
-                const res = await provider.request({
-                    method: 'eth_requestAccounts',
-                });
-                setAccount(res[0]);
-            } catch (error) {
-                alert("Something went wrong. Please try again!");
+    const handleLogin = async (value) => {
+        if(value === "ud") {
+            uauth
+                .loginWithPopup()
+                .then(res => {
+                    setDomain(res.idToken.sub);
+                    setAccount(res.idToken.wallet_address);
+                })
+                .catch(err => console.error(err.message));
+        }
+
+        if(value === "mm") {
+            if (provider) {
+                try {
+                    const res = await provider.request({
+                        method: 'eth_requestAccounts',
+                    });
+                    setDomain(res[0]);
+                    setAccount(res[0]);
+                } catch (error) {
+                    alert("Something went wrong. Please try again!");
+                }
+            } else {
+                alert("Please install the MetaMask extension!");
             }
-        } else {
-            alert("Please install the MetaMask extension!");
         }
     }
 
     const handleLogout = async () => {
-        setAccount(null);
+        uauth
+        .logout()
+        .catch(err => console.error(err.message))
+        .finally(() => {
+            setAccount(null);
+            setDomain(null);
+        });
         setData(DEFAULT_VALUES.data);
         setFilePath(DEFAULT_VALUES.filePath);
         setBadgeStyle(DEFAULT_VALUES.badgeStyle);
@@ -103,17 +175,25 @@ function App() {
                 {
                     account &&
                     <WalletBtn
-                        account={account}
+                        domain={domain}
+                        domainImg={domainImg}
                         handleLogout={handleLogout}
                     />
                 }
                 {
                     !account &&
                     <div className="login-btns">
-                        <LoginBtn
-                            label="Connect with MM"
-                            handleLogin={handleLogin}
-                        />
+                        <div>Connect wallet:</div>
+                        {
+                            LOGIN_OPTIONS.map((elem, ind) => (
+                                <LoginBtn
+                                    key={ind}
+                                    value={elem.value}
+                                    label={elem.label}
+                                    handleLogin={handleLogin}
+                                />
+                            ))
+                        }
                     </div>
                 }
             </nav>

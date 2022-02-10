@@ -1,6 +1,7 @@
+import udIcon from "../assets/ud-logo.png";
 import mmIcon from "../assets/mm-logo.png";
 
-export default function LoginBtn({ label, handleLogin }) {
+export default function LoginBtn({ value, label, handleLogin }) {
 
     const handleOnClick = e => {
         handleLogin(e.currentTarget.value);
@@ -10,8 +11,16 @@ export default function LoginBtn({ label, handleLogin }) {
         <button
             className="login-btn"
             onClick={handleOnClick}
+            value={value}
         >
-            <img src={mmIcon} alt="mm icon"></img>
+            {
+                value === "ud" &&
+                <img src={udIcon} alt="ud icon"></img>
+            }            
+            {
+                value === "mm" &&
+                <img src={mmIcon} alt="mm icon"></img>
+            }
             {label}     
         </button>
     );

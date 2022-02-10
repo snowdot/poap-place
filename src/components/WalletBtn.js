@@ -2,12 +2,15 @@ import { useState } from "react";
 import { trimAddress } from "../helpers/functions";
 import { RiWallet3Line } from "react-icons/ri";
 import { MdLogout } from "react-icons/md";
+import udIcon from "../assets/ud-logo.png";
 
 export default function WalletBtn({
-    account,
+    domain,
+    domainImg,
     handleLogout
 }) {
     const [showMessage, setShowMessage] = useState(false);
+    const domainCheck = domain?.split("").indexOf(".") !== -1;
 
     const handleOnMouseEnter = () => {
         setShowMessage(true);
@@ -29,8 +32,21 @@ export default function WalletBtn({
             onClick={handleOnClick}
         >
             <button className="wallet-btn__address">
-                <RiWallet3Line />
-                {trimAddress(account, 4)}
+                {
+                    domainCheck &&
+                    !domainImg &&
+                    <img src={udIcon} alt="ud logo"></img>
+                }
+                {
+                    domainCheck &&
+                    domainImg &&
+                    <img src={domainImg} alt="domain"></img>
+                }
+                {
+                    !domainCheck &&
+                    <RiWallet3Line />
+                }
+                {trimAddress(domain, 6)}
                 <MdLogout />
             </button>
             {
