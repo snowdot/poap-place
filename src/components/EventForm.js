@@ -120,7 +120,7 @@ export default function List({
     );
 
     if(state.error) return (
-        <div className="error-message error">
+        <div className="error-form-message error">
             <div><strong>Error:</strong> {state.error}</div>
             <div>Make sure that the name is unique.</div>
         </div>
@@ -147,7 +147,7 @@ export default function List({
                     >x</button>
                     <div className="form__field">
                         <label>Name of the POAP*</label>
-                        <div className={`form__field__input ${errors.name ? "error-message" : ""}`}>
+                        <div className={`form__field__input ${errors.name ? "error-form-message" : ""}`}>
                             <input
                                 className="input"
                                 type="text"
@@ -155,12 +155,12 @@ export default function List({
                                 {...register("name", { required: true, maxLength: 100 })}
                             />
                         </div>
-                        {errors.name && errors.name.type === "required" && <p className="error-message">Name is required.</p>}
-                        {errors.name && errors.name.type === "maxLength" && <p className="error-message">Max length exceeded.</p>}
+                        {errors.name && errors.name.type === "required" && <p className="error-form-message">Name is required.</p>}
+                        {errors.name && errors.name.type === "maxLength" && <p className="error-form-message">Max length exceeded.</p>}
                     </div>
                     <div className="form__field">
                         <label>Description*</label>
-                        <div className={`form__field__input ${errors.description ? "error-message" : ""}`}>
+                        <div className={`form__field__input ${errors.description ? "error-form-message" : ""}`}>
                             <input
                                 className="input"
                                 type="text"
@@ -168,12 +168,12 @@ export default function List({
                                 {...register("description", { required: true, maxLength: 500 })}
                             />
                         </div>
-                        {errors.description && errors.description.type === "required" && <p className="error-message">Description is required.</p>}
-                        {errors.description && errors.description.type === "maxLength" && <p className="error-message">Max length exceeded.</p>}
+                        {errors.description && errors.description.type === "required" && <p className="error-form-message">Description is required.</p>}
+                        {errors.description && errors.description.type === "maxLength" && <p className="error-form-message">Max length exceeded.</p>}
                     </div>
                     <div className="display-grid-2">
                         <div className="form__field">
-                            <div className={`form__field__input ${errors.virtual_event ? "error-message" : ""}`}>
+                            <div className={`form__field__input ${errors.virtual_event ? "error-form-message" : ""}`}>
                                 <label className="label-checkmark">Virtual event
                                     <input
                                         className="input"
@@ -185,7 +185,7 @@ export default function List({
                             </div>
                         </div>
                         <div className="form__field">
-                            <div className={`form__field__input ${errors.private_event ? "error-message" : ""}`}>
+                            <div className={`form__field__input ${errors.private_event ? "error-form-message" : ""}`}>
                                 <label className="label-checkmark">Private event
                                     <input
                                         className="input"
@@ -200,7 +200,7 @@ export default function List({
                     <div className="display-grid-2">
                         <div className="form__field">
                             <label>City</label>
-                            <div className={`form__field__input ${errors.city ? "error-message" : ""}`}>
+                            <div className={`form__field__input ${errors.city ? "error-form-message" : ""}`}>
                                 <input
                                     className="input"
                                     type="text"
@@ -208,11 +208,11 @@ export default function List({
                                     {...register("city", { required: false, maxLength: 100 })}
                                 />
                             </div>
-                            {errors.city && errors.city.type === "maxLength" && <p className="error-message">Max length exceeded.</p>}
+                            {errors.city && errors.city.type === "maxLength" && <p className="error-form-message">Max length exceeded.</p>}
                         </div>
                         <div className="form__field">
                             <label>Country</label>
-                            <div className={`form__field__input ${errors.country ? "error-message" : ""}`}>
+                            <div className={`form__field__input ${errors.country ? "error-form-message" : ""}`}>
                                 <input
                                     className="input"
                                     type="text"
@@ -220,48 +220,48 @@ export default function List({
                                     {...register("country", { required: false, maxLength: 100 })}
                                 />
                             </div>
-                            {errors.country && errors.country.type === "maxLength" && <p className="error-message">Max length exceeded.</p>}
+                            {errors.country && errors.country.type === "maxLength" && <p className="error-form-message">Max length exceeded.</p>}
                         </div>
                     </div>
                     <div className="display-grid-3">
                         <div className="form__field">
                             <label>Start date*</label>
-                            <div className={`form__field__input ${errors.start_date ? "error-message" : ""}`}>
+                            <div className={`form__field__input ${errors.start_date ? "error-form-message" : ""}`}>
                                 <input
                                     className="input"
                                     type="date"
                                     {...register("start_date", { required: true} )}
                                 />
-                                {errors.start_date && errors.start_date.type === "required" && <p className="error-message">Start date is required.</p>}
+                                {errors.start_date && errors.start_date.type === "required" && <p className="error-form-message">Start date is required.</p>}
                             </div>
                         </div>
                         <div className="form__field">
                             <label>End date*</label>
-                            <div className={`form__field__input ${errors.end_date ? "error-message" : ""}`}>
+                            <div className={`form__field__input ${errors.end_date ? "error-form-message" : ""}`}>
                                 <input
                                     className="input"
                                     type="date"
                                     {...register("end_date", { required: true })}
                                 />
-                                {errors.end_date && errors.end_date.type === "required" && <p className="error-message">End date is required.</p>}
+                                {errors.end_date && errors.end_date.type === "required" && <p className="error-form-message">End date is required.</p>}
                             </div>
                         </div>
                         <div className="form__field">
                             <label>Expiry date*</label>
-                            <div className={`form__field__input ${errors.expiry_date ? "error-message" : ""}`}>
+                            <div className={`form__field__input ${errors.expiry_date ? "error-form-message" : ""}`}>
                                 <input
                                     className="input"
                                     type="date"
                                     {...register("expiry_date", { required: true })}
                                 />
-                                {errors.expiry_date && errors.expiry_date.type === "required" && <p className="error-message">Expiry date is required.</p>}
+                                {errors.expiry_date && errors.expiry_date.type === "required" && <p className="error-form-message">Expiry date is required.</p>}
                             </div>
                         </div>
                     </div>
                     <div className="display-grid-2">
                         <div className="form__field">
                             <label>Website</label>
-                            <div className={`form__field__input ${errors.event_url ? "error-message" : ""}`}>
+                            <div className={`form__field__input ${errors.event_url ? "error-form-message" : ""}`}>
                                 <input
                                     className="input"
                                     type="text"
@@ -271,7 +271,7 @@ export default function List({
                         </div>
                         <div className="form__field">
                             <label>Template</label>
-                            <div className={`form__field__input ${errors.event_template_id ? "error-message" : ""}`}>
+                            <div className={`form__field__input ${errors.event_template_id ? "error-form-message" : ""}`}>
                                 <input
                                     className="input"
                                     type="number"
@@ -285,19 +285,19 @@ export default function List({
                     <div className="display-grid-2">
                         <div className="form__field">
                             <label>Email*</label>
-                            <div className={`form__field__input ${errors.email ? "error-message" : ""}`}>
+                            <div className={`form__field__input ${errors.email ? "error-form-message" : ""}`}>
                                 <input
                                     className="input"
                                     type="text"
                                     autoComplete="off"
                                     {...register("email", { required: true })}
                                 />
-                                {errors.email && errors.email.type === "required" && <p className="error-message">Email is required.</p>}
+                                {errors.email && errors.email.type === "required" && <p className="error-form-message">Email is required.</p>}
                             </div>
                         </div>
                         <div className="form__field">
                             <label>Edit code*</label>
-                            <div className={`form__field__input ${errors.secret_code ? "error-message" : ""}`}>
+                            <div className={`form__field__input ${errors.secret_code ? "error-form-message" : ""}`}>
                                 <input
                                     className="input"
                                     type="text"
@@ -305,21 +305,21 @@ export default function List({
                                     disabled={true}
                                     {...register("secret_code", { required: false })}
                                 />
-                                {errors.secret_code && errors.secret_code.type === "required" && <p className="error-message">Edit code is required.</p>}
+                                {errors.secret_code && errors.secret_code.type === "required" && <p className="error-form-message">Edit code is required.</p>}
                             </div>
                         </div>
 
                     </div>
                     <div className="form__field">
                         <label>Amount of links*</label>
-                        <div className={`form__field__input ${errors.requested_codes ? "error-message" : ""}`}>
+                        <div className={`form__field__input ${errors.requested_codes ? "error-form-message" : ""}`}>
                             <input
                                 className="input"
                                 type="number"
                                 autoComplete="off"
                                 {...register("requested_codes", { required: true })}
                             />
-                            {errors.requested_codes && errors.requested_codes.type === "required" && <p className="error-message">Amount of links is required.</p>}
+                            {errors.requested_codes && errors.requested_codes.type === "required" && <p className="error-form-message">Amount of links is required.</p>}
                         </div>
                     </div>
                     <input className="action-btn" type="submit" />

@@ -231,6 +231,7 @@ svg {
   padding: 40px;
 }
 
+.error-form-message,
 .error {
   color: rgb(199, 0, 0);
 }
